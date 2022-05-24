@@ -7,4 +7,5 @@ src-git lienol https://github.com/Lienol/openwrt-package.git;main
 src-git other https://github.com/Lienol/openwrt-package.git;other
 #src-git kenzo https://github.com/kenzok8/openwrt-packages
 #src-git small https://github.com/kenzok8/small
-src-git kiddin9_packages https://github.com/kiddin9/openwrt-packages.git
+#src-git kiddin9_packages https://github.com/kiddin9/openwrt-packages.git
+src-git small8 https://github.com/kenzok8/small-package
