@@ -25,6 +25,7 @@ on:
       - main
     paths:
       - 'feeds.conf.default'
+      - '.config'
       - '.github/workflows/build-openwrt.yml'
 
 env:
