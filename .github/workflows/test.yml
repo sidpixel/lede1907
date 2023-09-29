@@ -96,6 +96,7 @@ jobs:
     - name: Organize files
       run: |
         cp openwrt/.config  config8632defult
+        ls
 
     - name: Upload firmware directory
       uses: actions/upload-artifact@master
