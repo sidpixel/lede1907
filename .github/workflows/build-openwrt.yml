@@ -18,6 +18,14 @@ on:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
+  release:
+    types: [published]
+  push:
+    branches: 
+      - main
+    paths:
+      - 'feeds.conf.default'
+      - '.github/workflows/build-openwrt.yml'
 
 env:
   REPO_URL: https://github.com/Lienol/openwrt.git
