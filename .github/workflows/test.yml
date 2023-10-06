@@ -59,9 +59,8 @@ jobs:
         sudo chown $USER:$GROUPS /workdir
 
     - name: Compile the firmware
-      id: compile
       run: |
-        grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
+        grep '^CONFIG_TARGET.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
         echo -e "$(nproc) thread compile"
         echo "status=success" >> $GITHUB_OUTPUT
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
