@@ -60,7 +60,6 @@ jobs:
 
 
     - name: set the var
-      working-directory: /workdir/openwrt
       run: |
         grep '^CONFIG_TARGET.*ARCH.*=y' .config | sed -r 's/CONFIG_TARGET_ARCH_PACKAGES=(.*)/\1/' > DEVICE_NAME
         CONFIG_TARGET_ARCH_PACKAGES
