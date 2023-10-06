@@ -49,11 +49,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-
+    - name: check the file 
+      run: |
+        ls -alh
 
     - name: set the var
       run: |
-        ls -alh
         sed -r 's/CONFIG_TARGET_ARCH_PACKAGES=(.*)/\1/' .config > DEVICE_NAME
         CONFIG_TARGET_ARCH_PACKAGES
         echo -e "$(nproc) thread compile"
