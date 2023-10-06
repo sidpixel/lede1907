@@ -57,5 +57,9 @@ jobs:
       run: |
         sudo rm -rf /etc/apt/sources.list.d/*
         sudo -E apt-get -qq update
+
+        
+    - name: apt install
+      run: |
         sudo -E apt-get -qq install $(curl -fsSL raw.githubusercontent.com/sidpixel/openwrt-list/master/depends-ubuntu-2204)
 
