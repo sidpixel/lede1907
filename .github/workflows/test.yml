@@ -67,6 +67,7 @@ jobs:
 
 
     - name: Compile the firmware
+      working-directory: /workdir
       id: compile
       run: |
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
