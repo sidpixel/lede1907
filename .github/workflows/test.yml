@@ -61,7 +61,6 @@ jobs:
     - name: Compile the firmware
       id: compile
       run: |
-        cd openwrt
         echo -e "$(nproc) thread compile"
         echo "status=success" >> $GITHUB_OUTPUT
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
