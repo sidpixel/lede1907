@@ -49,19 +49,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Initialization environment
-      env:
-        DEBIAN_FRONTEND: noninteractive
-      run: |
-        
-        sudo timedatectl set-timezone "$TZ"
-        sudo mkdir -p /workdir
-        sudo chown $USER:$GROUPS /workdir
 
 
     - name: set the var
       run: |
-        cat .config | sed -r 's/CONFIG_TARGET_ARCH_PACKAGES=(.*)/\1/' > DEVICE_NAME
+        ls -alh
+        sed -r 's/CONFIG_TARGET_ARCH_PACKAGES=(.*)/\1/' .config > DEVICE_NAME
         CONFIG_TARGET_ARCH_PACKAGES
         echo -e "$(nproc) thread compile"
         echo "status=success" >> $GITHUB_OUTPUT
