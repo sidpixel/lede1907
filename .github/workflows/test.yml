@@ -55,7 +55,7 @@ jobs:
 
     - name: set the var
       run: |
-        sed 's/CONFIG_TARGET_ARCH_PACKAGES="\([^"]*\)"/\1/' .config > DEVICE_NAME
+        grep '^CONFIG_TARGET_ARCH_PACKAGES.*' .config| sed 's/CONFIG_TARGET_ARCH_PACKAGES="\([^"]*\)"/\1/' > DEVICE_NAME
         CONFIG_TARGET_ARCH_PACKAGES
         echo -e "$(nproc) thread compile"
         echo "status=success" >> $GITHUB_OUTPUT
