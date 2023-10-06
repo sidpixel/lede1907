@@ -55,14 +55,5 @@ jobs:
 
     - name: set the var
       run: |
-        grep '^CONFIG_TARGET_ARCH_PACKAGES.*' .config| sed 's/CONFIG_TARGET_ARCH_PACKAGES="\([^"]*\)"/\1/' > DEVICE_NAME
-        echo -e "$(nproc) thread compile"
-        echo "status=success" >> $GITHUB_OUTPUT
-        [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
-        echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
+        sudo -E apt-get -qq install $(curl -fsSL git.io/depends-ubuntu-2004)
 
-    - name: show var value
-      run: |
-        echo ${{env.FILE_DATE}}
-        echo ${{env.DEVICE_NAME}}
-        echo  LEDE-1907${{env.DEVICE_NAME}}${{env.FILE_DATE}}
