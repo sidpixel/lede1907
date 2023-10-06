@@ -53,7 +53,7 @@ jobs:
       run: |
         ls -alh
 
-    - name: set the var
+    - name: apt update
       run: |
         sudo rm -rf /etc/apt/sources.list.d/*
         sudo -E apt-get -qq update
