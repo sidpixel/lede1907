@@ -61,6 +61,7 @@ jobs:
     - name: Compile the firmware
       id: compile
       run: |
+        grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
         echo -e "$(nproc) thread compile"
         echo "status=success" >> $GITHUB_OUTPUT
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
@@ -70,3 +71,4 @@ jobs:
       run: |
         echo ${{env.FILE_DATE}}
         echo ${{env.DEVICE_NAME}}
+        LEDE-1907${{env.DEVICE_NAME}${{env.FILE_DATE}}
