@@ -83,4 +83,4 @@ jobs:
       run: |
         echo ${{env.FILE_DATE}}
         echo ${{env.DEVICE_NAME}}
-        echo  LEDE-1907${{env.DEVICE_NAME}${{env.FILE_DATE}}
+        echo  LEDE-1907${{env.DEVICE_NAME}}${{env.FILE_DATE}}
