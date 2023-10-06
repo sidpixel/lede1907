@@ -144,5 +144,5 @@ jobs:
     - name: Create release
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: LEDE-1907
+        tag_name: LEDE-1907${{env.DEVICE_NAME}${{env.FILE_DATE}}
         files: artifact/*
