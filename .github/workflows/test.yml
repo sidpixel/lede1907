@@ -69,3 +69,4 @@ jobs:
     - name: show var value
       run: |
         echo ${{env.FILE_DATE}}
+        echo ${{env.DEVICE_NAME}}
