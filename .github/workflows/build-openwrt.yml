@@ -22,7 +22,7 @@ on:
     types: [published]
   push:
     branches: 
-      - main
+      - 22.03
     paths:
       - 'feeds.conf.default'
       - '.config'
