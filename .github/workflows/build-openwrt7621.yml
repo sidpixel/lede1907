@@ -26,7 +26,7 @@ on:
     paths:
       - 'feeds.conf.default'
       - '.config'
-      - '.github/workflows/build-openwrt-7621.yml'
+      - '.github/workflows/build-openwrt7621.yml'
 
 env:
   REPO_URL: https://github.com/Lienol/openwrt.git
@@ -48,7 +48,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Initialization environment
       env:
