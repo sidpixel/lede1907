@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt 7621
+name: test
 
 on:
   repository_dispatch:
@@ -24,8 +24,7 @@ on:
     branches: 
       - 7621
     paths:
-      - 'feeds.conf.default'
-      - '.config'
+ 
       - '.github/workflows/test.yml'
 
 env:
