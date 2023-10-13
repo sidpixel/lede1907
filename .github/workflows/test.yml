@@ -33,7 +33,7 @@ jobs:
     - name: Clean Up
       run: |
         # 添加你的清理逻辑代码
-        RETENTION_DAYS=30
+        RETENTION_DAYS=3
         CUTOFF_DATE=$(date -I -d "$RETENTION_DAYS days ago")
         RUNS=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?event=workflow_run")
 
