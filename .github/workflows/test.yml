@@ -1,4 +1,4 @@
-name: Clean Up Old Workflows
+name: Clean Workflows
 
 on:
   schedule:
