@@ -41,7 +41,7 @@ jobs:
         echo "Cutoff Date: $CUTOFF_DATE"
         echo "List of Workflow Runs:"
         echo "$RUNS"
-        for run in $(echo "$RUNS" | jq -r '.workflow_runs[] | select(.created_at < "'"$CUTOFF_DATE"'" and .status == "completed") | .id'); do
+        for run in $(echo "$RUNS" | jq -r '.workflow_runs[] | select(.created_at < "'"$CUTOFF_DATE"'") | .id'); do
           echo "Deleting workflow run $run"
           gh api -X DELETE "repos/$GITHUB_REPOSITORY/actions/runs/$run"
         done
