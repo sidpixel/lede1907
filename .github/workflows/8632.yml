@@ -25,8 +25,8 @@ on:
       - main
     paths:
       - 'feeds.conf.default'
-      - '.config'
-      - '.github/workflows/build-openwrt.yml'
+      - '8632.config'
+      - '.github/workflows/8632.yml'
 
 env:
   REPO_URL: https://github.com/Lienol/openwrt.git
