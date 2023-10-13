@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt
+name: Build OpenWrt 7621
 
 on:
   repository_dispatch:
@@ -26,7 +26,7 @@ on:
     paths:
       - 'feeds.conf.default'
       - '.config'
-      - '.github/workflows/build-openwrt.yml'
+      - '.github/workflows/build-openwrt-7621.yml'
 
 env:
   REPO_URL: https://github.com/Lienol/openwrt.git
