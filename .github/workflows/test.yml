@@ -1,55 +1,32 @@
-#
-# Copyright (c) 2019-2020 P3TERX <https://p3terx.com>
-#
-# This is free software, licensed under the MIT License.
-# See /LICENSE for more information.
-#
-# https://github.com/P3TERX/Actions-OpenWrt
-# Description: Build OpenWrt using GitHub Actions
-#
-
-name: test
+name: Clean Up Old Workflows
 
 on:
-  repository_dispatch:
-  workflow_dispatch:
-    inputs:
-      ssh:
-        description: 'SSH connection to Actions'
-        required: false
-        default: 'false'
-  release:
-    types: [published]
-  push:
-    branches: 
-      - main
-    paths:
-      - 'feeds.conf.default'
-      - '.github/workflows/test.yml'
-
-env:
-  REPO_URL: https://github.com/Lienol/openwrt.git
-  REPO_BRANCH: 19.07
-  FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: .config
-  DIY_P1_SH: diy-part1.sh
-  DIY_P2_SH: diy-part2.sh
-  UPLOAD_BIN_DIR: true
-  UPLOAD_FIRMWARE: true
-  UPLOAD_COWTRANSFER: false
-  UPLOAD_WETRANSFER: false
-  UPLOAD_RELEASE: false
-  TZ: Asia/Shanghai
+  schedule:
+    - cron: '0 0 * * *' # 每天UTC时间的午夜执行
 
 jobs:
-
-  cleanup-runs:
+  cleanup:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: rokroskar/workflow-run-cleanup-action@master
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Clean Up
+      run: |
+        # 设置要保留的工作流记录的最大天数
+        RETENTION_DAYS=2
+
+        # 计算截止日期，即保留的最大天数前的日期
+        CUTOFF_DATE=$(date -I -d "$RETENTION_DAYS days ago")
+
+        # 列出所有已完成的工作流运行记录
+        RUNS=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?event=workflow_run")
+
+        # 遍历运行记录并删除旧的运行记录
+        for run in $(echo "$RUNS" | jq -r '.workflow_runs[] | select(.created_at < "'"$CUTOFF_DATE"'" and .status == "completed") | .id'); do
+          echo "Deleting workflow run $run"
+          gh api -X DELETE "repos/$GITHUB_REPOSITORY/actions/runs/$run"
+        done
       env:
-        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-    if: "!startsWith(github.ref, 'refs/tags/') && github.ref != 'refs/heads/master'"
-
-
-    
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
