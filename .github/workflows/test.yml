@@ -37,6 +37,7 @@ jobs:
         CUTOFF_DATE=$(date -I -d "$RETENTION_DAYS days ago")
         RUNS=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?event=workflow_run")
 
+        
         # 打印一些调试信息
         echo "Cutoff Date: $CUTOFF_DATE"
         echo "List of Workflow Runs:"
