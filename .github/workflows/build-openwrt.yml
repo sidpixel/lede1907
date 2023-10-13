@@ -32,7 +32,7 @@ env:
   REPO_URL: https://github.com/Lienol/openwrt.git
   REPO_BRANCH: 19.07
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: .config
+  CONFIG_FILE: 8632.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: true
@@ -73,9 +73,8 @@ jobs:
     - name: Load custom feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-        chmod +x $DIY_P1_SH
         cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P1_SH
+        sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
