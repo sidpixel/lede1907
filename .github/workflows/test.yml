@@ -15,18 +15,32 @@ jobs:
     - name: Check out repository
       uses: actions/checkout@v2
 
+    - name: Debug - Display environment variables
+      run: |
+        # 打印所有环境变量
+        env
+
+    - name: Debug - Display current directory
+      run: |
+        # 打印当前工作目录
+        pwd
+
+    - name: Debug - List files in the directory
+      run: |
+        # 打印当前目录下的文件列表
+        ls
+
     - name: Clean Up
       run: |
-        # 设置要保留的工作流记录的最大天数
-        RETENTION_DAYS=2
-
-        # 计算截止日期，即保留的最大天数前的日期
+        # 添加你的清理逻辑代码
+        RETENTION_DAYS=30
         CUTOFF_DATE=$(date -I -d "$RETENTION_DAYS days ago")
-
-        # 列出所有已完成的工作流运行记录
         RUNS=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?event=workflow_run")
 
-        # 遍历运行记录并删除旧的运行记录
+        # 打印一些调试信息
+        echo "Cutoff Date: $CUTOFF_DATE"
+        echo "List of Workflow Runs:"
+        echo "$RUNS"
         for run in $(echo "$RUNS" | jq -r '.workflow_runs[] | select(.created_at < "'"$CUTOFF_DATE"'" and .status == "completed") | .id'); do
           echo "Deleting workflow run $run"
           gh api -X DELETE "repos/$GITHUB_REPOSITORY/actions/runs/$run"
