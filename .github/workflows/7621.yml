@@ -25,8 +25,8 @@ on:
       - 7621
     paths:
       - 'feeds.conf.default'
-      - '.config'
-      - '.github/workflows/build-openwrt7621.yml'
+      - '7621.config'
+      - '.github/workflows/7621.yml'
 
 env:
   REPO_URL: https://github.com/Lienol/openwrt.git
